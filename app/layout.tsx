@@ -4,7 +4,7 @@ import { Montserrat } from "next/font/google";
 import { CustomCursor } from "@/shared";
 import { LenisProvider } from "@/shared/ui/lenis-provider";
 
-import "./globals.css";
+import "./globals.scss";
 
 const montserratSans = Montserrat({
   variable: "--font-poppins-sans",

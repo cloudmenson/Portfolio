@@ -13,7 +13,7 @@ export const SkillsSection = () => {
       id="skills-section"
       className="w-full h-full flex flex-col gap-8 pt-10 pb-10 px-6 sm:gap-20 sm:pt-20 sm:pb-20 sm:px-10 xl:px-30"
     >
-      <h2 className="text-3xl sm:text-7xl font-bold flex items-center gap-0.5">
+      <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold flex items-center gap-0.5">
         <span className="text-emerald-500 select-none">.</span>
 
         <div className="flex items-center gap-0.5 select-none">

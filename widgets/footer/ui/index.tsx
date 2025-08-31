@@ -9,7 +9,7 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 
-import { AnchorButton } from "@/shared";
+import { socialData, AnchorButton } from "@/shared";
 
 export const Footer: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -154,21 +154,9 @@ export const Footer: React.FC = () => {
               </h4>
 
               <div className="mt-6 flex items-center gap-4">
-                {[
-                  {
-                    label: "GitHub",
-                    Icon: GithubIcon,
-                    href: "https://github.com/",
-                  },
-                  {
-                    label: "LinkedIn",
-                    Icon: LinkedinIcon,
-                    href: "https://www.linkedin.com/",
-                  },
-                  { label: "Mail", href: "#", Icon: Mail },
-                ].map((s, idx) => (
+                {socialData.map((s, idx) => (
                   <motion.a
-                    key={s.label}
+                    key={s.id}
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
@@ -194,7 +182,7 @@ export const Footer: React.FC = () => {
             whileInView={{ opacity: 1 }}
             className="mt-12 flex flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row"
           >
-            <p>© {year} — .Hrytsenko Danylo portfolio</p>
+            <p>© {year} — .Hrytsenko Danylo's portfolio</p>
             <p>Developed and designed by .Hrytsenko</p>
           </motion.div>
         </div>

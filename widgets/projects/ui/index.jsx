@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { projects, DownloadLink } from "@/shared";
+import { cn, projects, DownloadLink } from "@/shared";
 
 export const ProjectsSection = () => {
   return (
@@ -12,7 +12,7 @@ export const ProjectsSection = () => {
       id="projects-section"
       className="w-full h-full flex flex-col gap-8 pt-10 pb-10 px-6 sm:gap-20 sm:pt-20 sm:pb-20 sm:px-10 xl:px-30"
     >
-      <h2 className="text-3xl sm:text-7xl font-bold flex items-center gap-0.5">
+      <h2 className="text-3xl sm:text-5xl lg:text-7xl font-bold flex items-center gap-0.5">
         <span className="text-emerald-500 select-none">.</span>
 
         <div className="flex items-center gap-0.5 select-none">
@@ -41,13 +41,13 @@ export const ProjectsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="flex flex-col gap-5 border-t pt-5 pb-5 border-emerald-900 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
+            className="flex flex-col gap-5 border-t pt-10 pb-10 border-emerald-900 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
           >
             <Image
               loading="lazy"
               src={project.src}
               alt="My portfolio"
-              className="pointer-events-none w-full h-auto sm:w-[300px]"
+              className="pointer-events-none w-full h-auto sm:w-[300px] border-2 border-emerald-900 lg:rotate-12"
             />
 
             <div className="flex flex-col text-center w-full lg:text-start">

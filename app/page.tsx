@@ -23,7 +23,7 @@ export default function Home() {
         <ProjectsSection />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

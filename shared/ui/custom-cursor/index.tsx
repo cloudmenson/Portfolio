@@ -4,7 +4,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 export const CustomCursor = () => {
   return (
-    <>
+    <div className="invisible lg:visible">
       <AnimatedCursor
         innerSize={0}
         outerSize={40}
@@ -15,6 +15,6 @@ export const CustomCursor = () => {
           background: "transparent",
         }}
       />
-    </>
+    </div>
   );
 };

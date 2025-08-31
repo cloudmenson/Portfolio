@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
+import { EMAIL } from "@/shared/config/constants";
 import {
   Icons,
   Button,
@@ -93,7 +94,7 @@ export const HeroSection = () => {
             variant="outline"
             className="rounded-2xl text-base py-2 px-4 sm:py-4 sm:px-8 sm:rounded-4xl sm:text-2xl md:text-2xl xl:text-3xl text-white"
           >
-            Contact me
+            <a href={`mailto:${EMAIL}`}>Contact me</a>
           </Button>
 
           <DownloadLink
