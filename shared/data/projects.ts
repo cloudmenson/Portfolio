@@ -1,5 +1,4 @@
 import { Img } from "@/shared";
-import test from "../assets/images/projects/test-preview.png";
 
 export const projects = [
   {
@@ -19,37 +18,5 @@ export const projects = [
       "Lenis",
       "Framer-motion",
     ],
-  },
-  {
-    id: 2,
-    href: "#",
-    src: test,
-    skills: ["React", "TypeScript", "FSD"],
-    title: "Project 1",
-    description: "Project description",
-  },
-  {
-    id: 3,
-    href: "#",
-    src: test,
-    skills: ["React", "TypeScript", "FSD"],
-    title: "Project 2",
-    description: "Project description",
-  },
-  {
-    id: 4,
-    href: "#",
-    src: test,
-    skills: ["React", "TypeScript", "FSD"],
-    title: "Project 3",
-    description: "Project description",
-  },
-  {
-    id: 5,
-    href: "#",
-    src: test,
-    skills: ["React", "TypeScript", "FSD"],
-    title: "Project 4",
-    description: "Project description",
   },
 ];
