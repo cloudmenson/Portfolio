@@ -3,15 +3,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Img, socialData } from "@/shared";
+import { Img, Emoji, socialData, LottieEmoji } from "@/shared";
 
 export const AboutSection = () => {
   return (
     <section
       id="about-section"
-      className="w-full h-dvh flex flex-col gap-20 pt-20 pb-20 px-30"
+      className="w-full h-full flex flex-col gap-8 pt-10 pb-10 px-6 sm:gap-10 sm:gap-20 sm:pt-20 sm:pb-20 sm:px-10 xl:px-30"
     >
-      <h2 className="text-7xl font-bold flex items-center gap-0.5 cursor-default">
+      <h2 className="gap-0.5 text-3xl sm:text-7xl font-bold flex items-center">
         <span className="text-emerald-500 select-none">.</span>
 
         <div className="flex items-center select-none">
@@ -32,13 +32,13 @@ export const AboutSection = () => {
         </div>
       </h2>
 
-      <div className="flex flex-col gap-12">
-        <div className="flex flex-row gap-10">
+      <div className="flex flex-col gap-8 sm:gap-12">
+        <div className="flex flex-row gap-8 sm:gap-10">
           <Image
             alt="Avatar"
             loading="lazy"
             src={Img.AboutAvatar}
-            className="rounded-full w-[120px] h-auto pointer-events-none"
+            className="rounded-full w-[80px] h-auto sm:w-[120px] pointer-events-none"
           />
 
           <div className="flex flex-row items-center gap-5">
@@ -49,42 +49,94 @@ export const AboutSection = () => {
                 whileTap={{ scale: 1 }}
                 whileHover={{ scale: 1.1, color: "#10B981" }}
               >
-                <soc.Icon width={30} height="auto" />
+                <soc.Icon className="w-[25px] h-auto sm:w-[30px]" />
               </motion.a>
             ))}
           </div>
         </div>
 
-        <div className="flex flex-row gap-15">
-          <motion.p
+        <div className="w-full text-base sm:text-2xl flex flex-col gap-4 max-w-5xl sm:gap-6">
+          <motion.div
             viewport={{ once: true }}
-            className="w-1/2 text-2xl"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, opacity: { delay: 0.2 } }}
+            transition={{ duration: 1, delay: 0.2, opacity: { delay: 0.4 } }}
           >
-            I'm <span className="font-semibold text-emerald-400">Danylo</span>,
-            25 y.o from
-            <span className="italic text-yellow-400"> Ukraine</span>. Skilled in
-            building modern and dynamic web apps using
-            <span className="text-sky-400"> React</span>,
-            <span className="text-sky-400"> Next.js</span>,
-            <span className="text-sky-400"> Tailwind</span>.
-          </motion.p>
+            <LottieEmoji
+              animationData={Emoji.WaveEmoji}
+              className="inline-flex mr-1.5 w-5 h-5 sm:w-6 sm:h-6 align-middle"
+            />
+            Hi, I’m <span className="text-emerald-400">Danylo</span>!
+            <LottieEmoji
+              animationData={Emoji.SunglassEmoji}
+              className="inline-flex w-7 h-7 sm:w-8 sm:h-8 align-middle"
+            />
+            I started my journey as a{" "}
+            <span className="text-emerald-400">Front-End Developer</span> in{" "}
+            <span className="italic text-yellow-400">Hillel IT School</span>,
+            where I learned to build modern web apps, practiced teamwork, and
+            explored application architecture and state management. That period
+            gave me a strong foundation in React and collaboration, from Git
+            versioning to real project discussions.
+          </motion.div>
 
-          <motion.p
+          <motion.div
             viewport={{ once: true }}
-            className="w-1/2 text-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 0.8, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, opacity: { delay: 0.6 } }}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, opacity: { delay: 0.8 } }}
           >
-            Experienced with MongoDB and Firebase for handling data and
-            authentication, as well as bringing Figma designs to life in
-            pixel-perfect web pages. Always learning, improving my English for
-            travel and international collaboration, and striving to grow as a
-            developer.
-          </motion.p>
+            <LottieEmoji
+              animationData={Emoji.RocketEmoji}
+              className="inline-flex mr-1.5 w-5 h-5 sm:w-6 sm:h-6 align-middle"
+            />
+            Later, I joined{" "}
+            <span className="italic text-yellow-400">
+              Peak Progress Partners N.V.
+            </span>
+            , contributing to the development of a large-scale multi-module
+            platform under NDA. There I worked closely with designers, backend
+            developers, and product managers to deliver high-quality features,
+            integrate APIs, and improve UI/UX across different modules. It was a
+            true step up in building scalable, maintainable, and dynamic
+            applications.
+          </motion.div>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, opacity: { delay: 1.2 } }}
+          >
+            <LottieEmoji
+              animationData={Emoji.SparklesEmoji}
+              className="inline-flex w-5 h-5 sm:w-6 sm:h-6 mr-1.5 align-middle"
+            />
+            Alongside, I’ve mastered tools like{" "}
+            <span className="text-sky-400">React</span>,{" "}
+            <span className="text-sky-400">Next.js</span>,{" "}
+            <span className="text-sky-400">TailwindCSS</span>,{" "}
+            <span className="text-sky-400">Framer Motion</span>,{" "}
+            <span className="text-sky-400">MongoDB</span>, and{" "}
+            <span className="text-sky-400">Firebase</span>. I enjoy turning
+            Figma designs into pixel-perfect interfaces, focusing on
+            performance, accessibility, and delightful user experiences.
+          </motion.div>
+
+          <motion.div
+            viewport={{ once: true }}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, opacity: { delay: 1.6 } }}
+          >
+            <LottieEmoji
+              animationData={Emoji.FireEmoji}
+              className="inline-flex w-5 h-5 sm:w-8 sm:h-8 align-top"
+            />
+            Outside of coding, I’m passionate about sports, gaming, and
+            exploring new ideas in design and technology. Always learning,
+            always growing, and ready to collaborate on projects that inspire!
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { motion, Reorder } from "framer-motion";
@@ -11,9 +11,9 @@ export const SkillsSection = () => {
   return (
     <section
       id="skills-section"
-      className="w-full h-full flex flex-col gap-20 pt-20 pb-20 px-30"
+      className="w-full h-full flex flex-col gap-8 pt-10 pb-10 px-6 sm:gap-20 sm:pt-20 sm:pb-20 sm:px-10 xl:px-30"
     >
-      <h2 className="text-7xl font-bold flex items-center gap-0.5 cursor-default">
+      <h2 className="text-3xl sm:text-7xl font-bold flex items-center gap-0.5">
         <span className="text-emerald-500 select-none">.</span>
 
         <div className="flex items-center gap-0.5 select-none">
@@ -34,7 +34,7 @@ export const SkillsSection = () => {
         </div>
       </h2>
 
-      <p className="text-gray-400 text-sm italic select-none">
+      <p className="hidden sm:inline-block text-gray-400 text-sm italic select-none">
         💡 Tip: You can drag &amp; drop the skills to reorder them!
       </p>
 
@@ -52,7 +52,7 @@ export const SkillsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="px-4 py-2 border border-white/50 rounded-full text-white cursor-grab active:cursor-grabbing duration-100 hover:text-emerald-500 hover:border-emerald-500"
+            className="px-3 py-1 rounded-xl sm:px-4 sm:py-2 sm:rounded-full border border-white/50 text-white duration-100 hover:text-emerald-500 hover:border-emerald-500"
           >
             {skill}
           </Reorder.Item>

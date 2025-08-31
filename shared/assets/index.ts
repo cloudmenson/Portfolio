@@ -1,7 +1,24 @@
 import AboutAvatar from "./images/about-avatar.jpeg";
 import Code from "./icons/code.svg?react";
+import ConfettiEmoji from "./lottie/confetti-emoji.json";
+import FireEmoji from "./lottie/fire.json";
 import MyPortfolio from "./images/projects/my-portfolio.png";
+import RocketEmoji from "./lottie/rocket-emoji.json";
+import SparklesEmoji from "./lottie/sparkles-emoji.json";
+import StarStrikeEmoji from "./lottie/star-strike-emoji.json";
+import SunglassEmoji from "./lottie/sunglass-emoji.json";
+import WaveEmoji from "./lottie/wave-emoji.json";
 
 export const Icons = { Code };
 
 export const Img = { AboutAvatar, MyPortfolio };
+
+export const Emoji = {
+  ConfettiEmoji,
+  FireEmoji,
+  RocketEmoji,
+  SparklesEmoji,
+  StarStrikeEmoji,
+  SunglassEmoji,
+  WaveEmoji,
+};

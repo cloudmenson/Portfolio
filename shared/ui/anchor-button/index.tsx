@@ -1,23 +1,27 @@
-'use client';
+"use client";
 
+import { ReactNode } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 
 import { cn } from "@/shared/lib/cn";
 
 interface IAnchorButton extends React.ComponentProps<typeof motion.span> {
   href: string;
   className?: string;
+  children: ReactNode;
+  motionSpanClass?: string;
 }
 
 export const AnchorButton = ({
   href,
+  children,
   className,
+  motionSpanClass,
   ...motionProps
 }: IAnchorButton) => {
   const anchorClass = cn(
-    "inline-flex items-center gap-2 text-lg font-medium, cursor-pointer",
+    "inline-flex items-center gap-2 text-lg font-medium",
     className
   );
 
@@ -52,11 +56,8 @@ export const AnchorButton = ({
 
   return (
     <Link onClick={onClick} href={href} className={anchorClass}>
-      <motion.span
-        className="border-[2px] rounded-3xl py-5 px-2"
-        {...motionProps}
-      >
-        <ArrowDown />
+      <motion.span className={motionSpanClass} {...motionProps}>
+        {children}
       </motion.span>
     </Link>
   );

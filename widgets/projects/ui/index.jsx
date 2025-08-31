@@ -4,15 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { Img, projects, DownloadLink } from "@/shared";
+import { projects, DownloadLink } from "@/shared";
 
 export const ProjectsSection = () => {
   return (
     <section
       id="projects-section"
-      className="w-full h-full flex flex-col gap-20 pt-20 pb-20 px-30"
+      className="w-full h-full flex flex-col gap-8 pt-10 pb-10 px-6 sm:gap-20 sm:pt-20 sm:pb-20 sm:px-10 xl:px-30"
     >
-      <h2 className="text-7xl font-bold flex items-center gap-0.5 cursor-default">
+      <h2 className="text-3xl sm:text-7xl font-bold flex items-center gap-0.5">
         <span className="text-emerald-500 select-none">.</span>
 
         <div className="flex items-center gap-0.5 select-none">
@@ -41,25 +41,23 @@ export const ProjectsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="flex flex-row gap-10 border-t pt-5 pb-5 border-emerald-900 items-center justify-between"
+            className="flex flex-col gap-5 border-t pt-5 pb-5 border-emerald-900 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
           >
             <Image
-              width={300}
-              height="auto"
               loading="lazy"
+              src={project.src}
               alt="My portfolio"
-              src={Img.MyPortfolio}
-              className="pointer-events-none"
+              className="pointer-events-none w-full h-auto sm:w-[300px]"
             />
 
-            <div className="flex flex-col">
+            <div className="flex flex-col text-center w-full lg:text-start">
               <h3 className="text-2xl font-semibold mb-3">{project.title}</h3>
 
               <p className="text-sm font-semibold mb-4">
                 {project.description}
               </p>
 
-              <div className="flex flow-row flew-wrap w-full gap-2 justify-start">
+              <div className="flex flow-row flex-wrap w-full gap-2 justify-center lg:justify-start">
                 {project.skills.map((skill, idx) => (
                   <p
                     key={idx}
@@ -74,10 +72,10 @@ export const ProjectsSection = () => {
             <DownloadLink
               mount
               href={project.href}
-              className="ml-auto text-3xl hover:text-emerald-500 duration-200"
+              className="ml-auto text-base sm:text-3xl hover:text-emerald-500 duration-200"
               rightIcon={
-                <div className="ml-2 rounded-4xl bg-emerald-500 text-black">
-                  <ArrowUpRight width={30} height={30} />
+                <div className="ml-1 rounded-4xl bg-emerald-500 text-black sm:ml-2">
+                  <ArrowUpRight className="w-[20px] h-[20px] sm:w-[30px] sm:h-[30px]" />
                 </div>
               }
             >

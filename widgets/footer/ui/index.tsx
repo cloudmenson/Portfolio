@@ -9,6 +9,8 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 
+import { AnchorButton } from "@/shared";
+
 export const Footer: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +53,7 @@ export const Footer: React.FC = () => {
             className="absolute -inset-[40%] opacity-60 will-change-transform"
             style={{ background: glowBG }}
           />
-          
+
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#b2b2b22c,transparent_1px)] [background-size:20px_20px]" />
         </div>
 
@@ -80,6 +82,7 @@ export const Footer: React.FC = () => {
               <h3 className="text-2xl font-bold tracking-tight">
                 Let’s build something great
               </h3>
+
               <p className="mt-3 max-w-xs text-sm text-white/70">
                 Frontend, motion, and delightful interactions. Drop me a line —
                 I’m open for collaborations.
@@ -95,47 +98,48 @@ export const Footer: React.FC = () => {
               <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-white/60">
                 Navigation
               </h4>
-              <ul className="space-y-3">
+
+              <div className="flex flex-col space-y-3">
                 {[
-                  { href: "#projects", label: "Projects" },
-                  { href: "#about", label: "About" },
-                  { href: "#skills", label: "Skills" },
-                  { href: "#contact", label: "Contact" },
+                  { href: "#hero-section", label: "Welcome" },
+                  { href: "#about-section", label: "About" },
+                  { href: "#skills-section", label: "Skills" },
+                  { href: "#projects-section", label: "Projects" },
                 ].map((i) => (
-                  <li key={i.href}>
-                    <motion.a
-                      href={i.href}
-                      className="group inline-flex items-center gap-2 text-white/80 hover:text-white"
-                      whileHover={{ x: 2 }}
+                  <AnchorButton
+                    key={i.href}
+                    href={i.href}
+                    whileHover={{ x: 2 }}
+                    className="group text-white/80 hover:text-white"
+                    motionSpanClass="flex flex-row gap-2 items-center"
+                    transition={{
+                      damping: 20,
+                      type: "spring",
+                      stiffness: 300,
+                    }}
+                  >
+                    <span className="relative">
+                      {i.label}
+                      <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-emerald-500/80 transition-all duration-300 ease-out group-hover:w-full" />
+                    </span>
+
+                    <motion.svg
+                      initial={{ x: 0 }}
+                      className="h-3 w-3"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      whileHover={{ x: 4 }}
                       transition={{
-                        damping: 20,
+                        damping: 18,
                         type: "spring",
                         stiffness: 300,
                       }}
                     >
-                      <span className="relative">
-                        {i.label}
-                        <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-emerald-500/80 transition-all duration-300 ease-out group-hover:w-full" />
-                      </span>
-
-                      <motion.svg
-                        initial={{ x: 0 }}
-                        className="h-3 w-3"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        whileHover={{ x: 4 }}
-                        transition={{
-                          damping: 18,
-                          type: "spring",
-                          stiffness: 300,
-                        }}
-                      >
-                        <path d="M12.293 3.293a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L14 7.414V17a1 1 0 11-2 0V7.414l-3.293 3.293A1 1 0 017.293 8.293l5-5z" />
-                      </motion.svg>
-                    </motion.a>
-                  </li>
+                      <path d="M12.293 3.293a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L14 7.414V17a1 1 0 11-2 0V7.414l-3.293 3.293A1 1 0 017.293 8.293l5-5z" />
+                    </motion.svg>
+                  </AnchorButton>
                 ))}
-              </ul>
+              </div>
             </motion.div>
 
             <motion.div
@@ -153,13 +157,13 @@ export const Footer: React.FC = () => {
                 {[
                   {
                     label: "GitHub",
-                    href: "https://github.com/",
                     Icon: GithubIcon,
+                    href: "https://github.com/",
                   },
                   {
                     label: "LinkedIn",
-                    href: "https://www.linkedin.com/",
                     Icon: LinkedinIcon,
+                    href: "https://www.linkedin.com/",
                   },
                   { label: "Mail", href: "#", Icon: Mail },
                 ].map((s, idx) => (
