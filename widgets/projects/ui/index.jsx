@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { cn, projects, DownloadLink } from "@/shared";
+import { projects, DownloadLink } from "@/shared";
 
 export const ProjectsSection = () => {
   return (

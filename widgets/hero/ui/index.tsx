@@ -16,7 +16,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero-section"
-      className="w-full h-dvh flex flex-col items-start sm:items-center sm:flex-row sm:justify-between gap-15 pt-20 pb-10 px-6 sm:gap-5 sm:pt-20 sm:pb-10 sm:px-10 xl:gap-10 xl:pt-50 xl:pb-30 xl:px-30"
+      className="w-full h-full flex flex-col items-start sm:items-center sm:flex-row sm:justify-between gap-15 pt-20 pb-10 px-6 sm:gap-5 sm:pt-20 sm:pb-10 sm:px-10 xl:gap-10 xl:pt-50 xl:pb-30 xl:px-30"
     >
       <motion.div
         viewport={{ once: true }}
@@ -37,7 +37,7 @@ export const HeroSection = () => {
                 type: "spring",
                 stiffness: 400,
                 opacity: {
-                  delay: idx * 0.15,
+                  delay: idx * 0.06,
                 },
               }}
             >
@@ -55,7 +55,7 @@ export const HeroSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
               opacity: {
-                delay: 1.4,
+                delay: 0.54,
               },
             }}
           >
@@ -75,7 +75,7 @@ export const HeroSection = () => {
                 type: "spring",
                 stiffness: 400,
                 opacity: {
-                  delay: 1.6 + idx * 0.15,
+                  delay: 0.54 + idx * 0.06,
                 },
               }}
             >
@@ -125,7 +125,7 @@ export const HeroSection = () => {
               whileHover={{ scale: 1.2, color: "#10B981" }}
               transition={{
                 opacity: {
-                  delay: 3.2 + idx * 0.2,
+                  delay: 1.1 + idx * 0.2,
                 },
               }}
             >
@@ -146,7 +146,7 @@ export const HeroSection = () => {
             repeatDelay: 0,
             repeat: Infinity,
             opacity: {
-              delay: 4,
+              delay: 2.2,
             },
           }}
         >
