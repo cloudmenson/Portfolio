@@ -99,7 +99,7 @@ export const HeroSection = () => {
 
           <DownloadLink
             mount
-            href={"/"}
+            href="/cv/Danylo_Hrytsenko_Front-end.pdf"
             className="text-base sm:text-2xl md:text-2xl xl:text-3xl"
             rightIcon={
               <div className="rounded-4xl bg-emerald-500 text-black">

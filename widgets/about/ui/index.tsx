@@ -92,10 +92,10 @@ export const AboutSection = () => {
             />
             Later, I joined{" "}
             <span className="italic text-yellow-400">
-              Peak Progress Partners N.V.
+              NDA
             </span>
             , contributing to the development of a large-scale multi-module
-            platform under NDA. There I worked closely with designers, backend
+            platform. There I worked closely with designers, backend
             developers, and product managers to deliver high-quality features,
             integrate APIs, and improve UI/UX across different modules. It was a
             true step up in building scalable, maintainable, and dynamic
