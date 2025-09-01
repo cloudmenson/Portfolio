@@ -92,7 +92,7 @@ export const AboutSection = () => {
             />
             Later, I joined{" "}
             <span className="italic text-yellow-400">
-              NDA
+              NDA project
             </span>
             , contributing to the development of a large-scale multi-module
             platform. There I worked closely with designers, backend
@@ -133,8 +133,8 @@ export const AboutSection = () => {
               animationData={Emoji.FireEmoji}
               className="inline-flex w-5 h-5 sm:w-8 sm:h-8 align-top"
             />
-            Outside of coding, I’m passionate about sports, gaming, and
-            exploring new ideas in design and technology. Always learning,
+            Outside of coding, I’m passionate about guitar, cats, gaming, and
+            exploring new ideas in front-end. Always learning,
             always growing, and ready to collaborate on projects that inspire!
           </motion.div>
         </div>
