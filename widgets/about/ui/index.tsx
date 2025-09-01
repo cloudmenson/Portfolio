@@ -91,15 +91,12 @@ export const AboutSection = () => {
               className="inline-flex mr-1.5 w-5 h-5 sm:w-6 sm:h-6 align-middle"
             />
             Later, I joined{" "}
-            <span className="italic text-yellow-400">
-              NDA project
-            </span>
-            , contributing to the development of a large-scale multi-module
-            platform. There I worked closely with designers, backend
-            developers, and product managers to deliver high-quality features,
-            integrate APIs, and improve UI/UX across different modules. It was a
-            true step up in building scalable, maintainable, and dynamic
-            applications.
+            <span className="italic text-yellow-400">NDA project</span>,
+            contributing to the development of a large-scale multi-module
+            platform. There I worked closely with designers, backend developers,
+            and product managers to deliver high-quality features, integrate
+            APIs, and improve UI/UX across different modules. It was a true step
+            up in building scalable, maintainable, and dynamic applications.
           </motion.div>
 
           <motion.div
@@ -112,11 +109,11 @@ export const AboutSection = () => {
               animationData={Emoji.SparklesEmoji}
               className="inline-flex w-5 h-5 sm:w-6 sm:h-6 mr-1.5 align-middle"
             />
-            Alongside, I’ve mastered tools like{" "}
+            Alongside, I worked with the tools like{" "}
             <span className="text-sky-400">React</span>,{" "}
             <span className="text-sky-400">Next.js</span>,{" "}
             <span className="text-sky-400">TailwindCSS</span>,{" "}
-            <span className="text-sky-400">Framer Motion</span>,{" "}
+            <span className="text-sky-400">Framer-motion</span>,{" "}
             <span className="text-sky-400">MongoDB</span>, and{" "}
             <span className="text-sky-400">Firebase</span>. I enjoy turning
             Figma designs into pixel-perfect interfaces, focusing on
@@ -134,8 +131,8 @@ export const AboutSection = () => {
               className="inline-flex w-5 h-5 sm:w-8 sm:h-8 align-top"
             />
             Outside of coding, I’m passionate about guitar, cats, gaming, and
-            exploring new ideas in front-end. Always learning,
-            always growing, and ready to collaborate on projects that inspire!
+            exploring new ideas in front-end. Always learning, always growing,
+            and ready to collaborate on projects that inspire!
           </motion.div>
         </div>
       </div>
