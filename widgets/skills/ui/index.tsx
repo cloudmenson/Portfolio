@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { motion, Reorder } from "framer-motion";
@@ -52,7 +52,7 @@ export const SkillsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="px-3 py-1 rounded-xl sm:px-4 sm:py-2 sm:rounded-full border border-white/50 text-white duration-100 hover:text-emerald-500 hover:border-emerald-500"
+            className="cursor-grab px-3 py-1 rounded-xl sm:px-4 sm:py-2 sm:rounded-full border border-white/50 text-white duration-100 hover:text-emerald-500 hover:border-emerald-500"
           >
             {skill}
           </Reorder.Item>
