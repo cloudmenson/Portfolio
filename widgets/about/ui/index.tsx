@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -91,7 +91,7 @@ export const AboutSection = () => {
               className="inline-flex mr-1.5 w-5 h-5 sm:w-6 sm:h-6 align-middle"
             />
             Later, I joined{" "}
-            <span className="italic text-yellow-400">NDA (gambling)</span>,
+            <span className="italic text-yellow-400">NDA (iGaming)</span>,
             contributing to the development of a large-scale multi-module
             platform. There I worked closely with designers, backend developers,
             and product managers to deliver high-quality features, integrate
