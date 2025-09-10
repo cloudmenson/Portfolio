@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import { projects, DownloadLink } from "@/shared";
+import PixelCard from "@/shared/ui/cards/pixel-card";
 
 export const ProjectsSection = () => {
   return (
@@ -43,12 +44,14 @@ export const ProjectsSection = () => {
             transition={{ duration: 0.5, delay: idx * 0.2 }}
             className="flex flex-col gap-5 border-t pt-10 pb-10 border-emerald-900 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
           >
-            <Image
-              loading="lazy"
-              src={project.src}
-              alt="My portfolio"
-              className="pointer-events-none w-full h-auto sm:w-[300px] border-2 border-emerald-900 lg:rotate-12"
-            />
+            <PixelCard variant="green">
+              <Image
+                loading="lazy"
+                src={project.src}
+                alt="My portfolio"
+                className="absolute pointer-events-none w-full h-full object-cover left-0 top-0 z-[-1]"
+              />
+            </PixelCard>
 
             <div className="flex flex-col text-center w-full lg:text-start">
               <h3 className="text-2xl font-semibold mb-3">{project.title}</h3>

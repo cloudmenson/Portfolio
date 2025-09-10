@@ -20,11 +20,6 @@ export const socialData = [
   { id: 3, Icon: Send, label: "Telegram", href: "https://t.me/cloudmenson" },
   {
     id: 4,
-    Icon: Github,
-    href: "https://github.com/cloudmenson",
-  },
-  {
-    id: 5,
     Icon: CircleArrowOutUpRight,
     href: "https://linktr.ee/cloudmenson",
   },
