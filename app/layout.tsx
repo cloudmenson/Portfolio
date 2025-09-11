@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
-import { CustomCursor } from "@/shared";
+import { ClientOnly, CustomCursor } from "@/shared";
 import { LenisProvider } from "@/shared/ui/lenis-provider";
 
 import "./globals.scss";
@@ -27,9 +27,11 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${montserratSans.variable} antialiased`}
       >
-        <CustomCursor />
+        <ClientOnly>
+          <CustomCursor />
 
-        <LenisProvider>{children}</LenisProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </ClientOnly>
       </body>
     </html>
   );
