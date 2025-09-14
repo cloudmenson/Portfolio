@@ -318,7 +318,7 @@ export default function PixelCard({
       tabIndex={finalNoFocus ? -1 : 0}
       onBlur={finalNoFocus ? undefined : onBlur}
       onFocus={finalNoFocus ? undefined : onFocus}
-      className={`h-[200px] min-w-[400px] max-w-[400px] sm:max-w-[300px] relative overflow-hidden grid place-items-center border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
+      className={`h-[250px] min-w-[400px] max-w-[400px] sm:max-w-[300px] relative overflow-hidden grid place-items-center border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
     >
       <canvas className="w-full h-full block" ref={canvasRef} />
       {children}
