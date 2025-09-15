@@ -4,8 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { projects, DownloadLink } from "@/shared";
 import PixelCard from "@/shared/ui/cards/pixel-card";
+import { cn, projects, DownloadLink } from "@/shared";
 
 export const ProjectsSection = () => {
   return (
@@ -54,7 +54,14 @@ export const ProjectsSection = () => {
             </PixelCard>
 
             <div className="flex flex-col text-center w-full lg:text-start">
-              <h3 className="text-2xl font-semibold mb-3">{project.title}</h3>
+              <h3
+                className={cn(
+                  "text-2xl font-semibold mb-3",
+                  project.title === "IN DEVELOPMENT" && "text-red-600"
+                )}
+              >
+                {project.title}
+              </h3>
 
               <p className="text-sm font-semibold mb-4">
                 {project.description}

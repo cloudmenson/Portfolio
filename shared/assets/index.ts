@@ -1,4 +1,5 @@
 import AboutAvatar from "./images/about-avatar.jpeg";
+import Adminpanel from "./images/projects/adminpanel-project.png";
 import Code from "./icons/code.svg?react";
 import ConfettiEmoji from "./lottie/confetti-emoji.json";
 import DesignerPortfolio from "./images/projects/designer-portfolio.png";
@@ -9,13 +10,13 @@ import SparklesEmoji from "./lottie/sparkles-emoji.json";
 import StarStrikeEmoji from "./lottie/star-strike-emoji.json";
 import SunglassEmoji from "./lottie/sunglass-emoji.json";
 import WaveEmoji from "./lottie/wave-emoji.json";
-
 export const Icons = { Code };
 
 export const Img = {
   AboutAvatar,
-  MyPortfolio,
+  Adminpanel,
   DesignerPortfolio,
+  MyPortfolio,
 };
 
 export const Emoji = {
