@@ -42,7 +42,7 @@ export const projects = [
   },
   {
     id: 3,
-    href: "#",
+    href: "https://immersive-cinematic-ui.netlify.app",
     title: "Immersive Cinematic UI",
     description:
       "An interactive cinematic website inspired by Wakanda Forever. Built with GSAP scroll-driven animations, sticky sections, immersive video backdrops, and 3D models. Optimized for smooth performance and responsive design, with creative replacements of complex 3D for video, parallax, and animated UI elements.",
