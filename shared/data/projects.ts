@@ -61,25 +61,4 @@ export const projects = [
       "Prettier",
     ],
   },
-  {
-    id: 4,
-    href: "#",
-    title: "IN DEVELOPMENT",
-    description:
-      "The project is designed to manage business processes, track key metrics (customers, orders, revenue, goal achievement), and interactively visualize data.",
-    src: Img.Adminpanel,
-    skills: [
-      "React",
-      "Next",
-      "TypeScript",
-      "FSD",
-      "Tailwind",
-      "Firebase",
-      "MongoDB",
-      "Husky",
-      "Eslint",
-      "Prettier",
-      "Framer-motion",
-    ],
-  },
 ];
