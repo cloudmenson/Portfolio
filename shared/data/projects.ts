@@ -61,4 +61,23 @@ export const projects = [
       "Prettier",
     ],
   },
+  {
+    id: 4,
+    href: "",
+    title: "Apple 2025 Website (under development)",
+    description:
+      "A modern website of the official Apple website built with Next.js, TypeScript, and TailwindCSS. Features responsive design, smooth animations, clean UI, and developer tools like ESLint, Prettier, and Husky for code quality.",
+    src: Img.Apple,
+    skills: [
+      "Next.js",
+      " React",
+      "TypeScript",
+      "TailwindCSS",
+      "ESLint",
+      "Prettier",
+      "Husky",
+      "Lint-staged",
+      "clsx",
+    ],
+  },
 ];

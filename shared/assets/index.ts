@@ -1,5 +1,6 @@
 import AboutAvatar from "./images/about-avatar.jpeg";
 import Adminpanel from "./images/projects/adminpanel-project.png";
+import Apple from "./images/projects/apple.png";
 import Code from "./icons/code.svg?react";
 import ConfettiEmoji from "./lottie/confetti-emoji.json";
 import DesignerPortfolio from "./images/projects/designer-portfolio.png";
@@ -17,6 +18,7 @@ export const Icons = { Code };
 export const Img = {
   AboutAvatar,
   Adminpanel,
+  Apple,
   DesignerPortfolio,
   ImmersiveDesign,
   MyPortfolio,
