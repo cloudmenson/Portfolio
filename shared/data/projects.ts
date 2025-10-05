@@ -4,7 +4,7 @@ export const projects = [
   {
     id: 1,
     href: "https://marta-designer.netlify.app",
-    title: "Designer portfolio website",
+    title: "Designer portfolio web",
     description:
       "This project is an interactive portfolio built to showcase a designer’s work. It combines modern animations, smooth scrolling, and a visually appealing UI to highlight the creator’s style.",
     src: Img.DesignerPortfolio,
@@ -25,7 +25,7 @@ export const projects = [
   {
     id: 2,
     href: "#",
-    title: "My portfolio website",
+    title: "My portfolio web",
     description:
       "A personal portfolio website built with Next.js, TypeScript, and FSD architecture. It showcases my skills, projects, and experience with a focus on modern UI/UX, animations (Framer Motion), smooth scrolling (Lenis), and responsive design using TailwindCSS.",
     src: Img.MyPortfolio,
@@ -63,10 +63,10 @@ export const projects = [
   },
   {
     id: 4,
-    href: "",
-    title: "Apple Website (under development)",
+    href: "https://my-project-web-app.netlify.app",
+    title: "Apple web",
     description:
-      "A modern website of the official Apple website built with Next.js, TypeScript, and TailwindCSS. Features responsive design, smooth animations, clean UI, and developer tools like ESLint, Prettier, and Husky for code quality.",
+      "A modern clone of the official Apple website built with Next.js, TypeScript, and TailwindCSS. Features responsive design, smooth animations, clean UI, and developer tools like ESLint, Prettier, and Husky for code quality.",
     src: Img.Apple,
     skills: [
       "Next.js",
