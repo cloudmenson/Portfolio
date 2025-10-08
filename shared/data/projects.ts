@@ -86,6 +86,6 @@ export const projects = [
     title: "OpenSea - NFT Crypto Market (Under development)",
     description: "Soon",
     src: Img.NFTCryptoMarket,
-    skills: [],
+    skills: ["Soon"],
   },
 ];
