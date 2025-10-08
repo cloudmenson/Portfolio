@@ -80,4 +80,12 @@ export const projects = [
       "clsx",
     ],
   },
+  {
+    id: 5,
+    href: "#",
+    title: "OpenSea - NFT Crypto Market (Under development)",
+    description: "Soon",
+    src: Img.NFTCryptoMarket,
+    skills: [],
+  },
 ];

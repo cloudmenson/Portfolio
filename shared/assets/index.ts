@@ -7,6 +7,7 @@ import DesignerPortfolio from "./images/projects/designer-portfolio.png";
 import FireEmoji from "./lottie/fire.json";
 import ImmersiveDesign from "./images/projects/immersive-design.png";
 import MyPortfolio from "./images/projects/my-portfolio.png";
+import NFTCryptoMarket from "./images/projects/nft-crypto-market.png";
 import RocketEmoji from "./lottie/rocket-emoji.json";
 import SparklesEmoji from "./lottie/sparkles-emoji.json";
 import StarStrikeEmoji from "./lottie/star-strike-emoji.json";
@@ -22,6 +23,7 @@ export const Img = {
   DesignerPortfolio,
   ImmersiveDesign,
   MyPortfolio,
+  NFTCryptoMarket,
 };
 
 export const Emoji = {
