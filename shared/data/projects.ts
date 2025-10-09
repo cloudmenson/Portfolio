@@ -82,6 +82,23 @@ export const projects = [
   },
   {
     id: 5,
+    href: "https://github.com/cloudmenson/SecureNote-Browser-Extention-Manifest-V3",
+    title: "Secure Note - Browser Extension",
+    description:
+      "A cross-browser extension for Chrome and IE that allows you to create, encrypt, and store domain-bound notes. It features a floating button, a pop-up UI window, local storage with encryption, and element visibility settings. Pure JS, CSS, and Manifest V3 are used.",
+    src: Img.Note,
+    skills: [
+      "Vanilla JS",
+      "Manifest V3",
+      "Chrome API",
+      "HTML",
+      "CSS",
+      "Storage API",
+      "Encryption",
+    ],
+  },
+  {
+    id: 6,
     href: "#",
     title: "OpenSea - NFT Crypto Market (Under development)",
     description: "Soon",
