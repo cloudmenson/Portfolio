@@ -42,7 +42,7 @@ export const ProjectsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="flex flex-col gap-5 border-t pt-10 pb-10 border-emerald-900 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
+            className="flex flex-col gap-5 border-t pt-10 pb-10 border-emerald-900 last:pb-0 items-center justify-between lg:flex-row lg:items-center lg:gap-10"
           >
             <PixelCard variant="green">
               <Image
@@ -63,11 +63,11 @@ export const ProjectsSection = () => {
                 {project.title}
               </h3>
 
-              <p className="text-sm font-semibold mb-4">
+              <p className="text-sm font-semibold mb-6">
                 {project.description}
               </p>
 
-              <div className="flex flow-row flex-wrap w-full gap-2 justify-center lg:justify-start">
+              <div className="flex flow-row flex-wrap w-full gap-2 justify-start">
                 {project.skills.map((skill, idx) => (
                   <p
                     key={idx}
@@ -82,7 +82,7 @@ export const ProjectsSection = () => {
             <DownloadLink
               mount
               href={project.href}
-              className="ml-auto text-base sm:text-3xl hover:text-emerald-500 duration-200"
+              className="ml-auto text-xl sm:text-3xl hover:text-emerald-500 duration-200"
               rightIcon={
                 <div className="ml-1 rounded-4xl bg-emerald-500 text-black sm:ml-2">
                   <ArrowUpRight className="w-[20px] h-[20px] sm:w-[30px] sm:h-[30px]" />

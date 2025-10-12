@@ -94,7 +94,7 @@ export const HeroSection = () => {
             variant="outline"
             className="rounded-2xl text-base py-2 px-4 sm:py-4 sm:px-8 sm:rounded-4xl sm:text-2xl md:text-2xl xl:text-3xl text-white"
           >
-            <a href={`mailto:${EMAIL}`}>Contact me</a>
+            <a href="https://t.me/cloudmenson">Contact me</a>
           </Button>
 
           <DownloadLink
