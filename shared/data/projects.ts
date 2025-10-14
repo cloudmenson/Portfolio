@@ -3,6 +3,25 @@ import { Img } from "@/shared";
 export const projects = [
   {
     id: 1,
+    href: "https://nft-crypto-market.netlify.app",
+    title: "OpenSea - NFT Crypto Market (Under development)",
+    description:
+      "A modern NFT marketplace inspired by OpenSea, featuring live crypto data, trending collections, 3D animations, and a fully responsive design. Built with Next.js 15, TypeScript, and Framer Motion to ensure a smooth and futuristic user experience.",
+    src: Img.NFTCryptoMarket,
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "TailwindCSS",
+      "Framer Motion",
+      "Redux Toolkit",
+      "MockAPI",
+      "Swiper.js",
+      "FSD Architecture",
+    ],
+  },
+  {
+    id: 2,
     href: "https://marta-designer.netlify.app",
     title: "Designer portfolio web",
     description:
@@ -23,25 +42,24 @@ export const projects = [
     ],
   },
   {
-    id: 2,
-    href: "#",
-    title: "My portfolio web",
+    id: 3,
+    href: "https://github.com/cloudmenson/SecureNote-Browser-Extention-Manifest-V3",
+    title: "Secure Note - Browser Extension",
     description:
-      "A personal portfolio website built with Next.js, TypeScript, and FSD architecture. It showcases my skills, projects, and experience with a focus on modern UI/UX, animations (Framer Motion), smooth scrolling (Lenis), and responsive design using TailwindCSS.",
-    src: Img.MyPortfolio,
+      "A cross-browser extension for Chrome and IE that allows you to create, encrypt, and store domain-bound notes. It features a floating button, a pop-up UI window, local storage with encryption, and element visibility settings. Pure JS, CSS, and Manifest V3 are used.",
+    src: Img.Note,
     skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "FSD Architecture",
-      "Lucide",
-      "Tailwind",
-      "Lenis",
-      "Framer-motion",
+      "Vanilla JS",
+      "Manifest V3",
+      "Chrome API",
+      "HTML",
+      "CSS",
+      "Storage API",
+      "Encryption",
     ],
   },
   {
-    id: 3,
+    id: 4,
     href: "https://immersive-cinematic-ui.netlify.app",
     title: "Immersive Cinematic UI",
     description:
@@ -62,7 +80,25 @@ export const projects = [
     ],
   },
   {
-    id: 4,
+    id: 5,
+    href: "#",
+    title: "My portfolio web",
+    description:
+      "A personal portfolio website built with Next.js, TypeScript, and FSD architecture. It showcases my skills, projects, and experience with a focus on modern UI/UX, animations (Framer Motion), smooth scrolling (Lenis), and responsive design using TailwindCSS.",
+    src: Img.MyPortfolio,
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "FSD Architecture",
+      "Lucide",
+      "Tailwind",
+      "Lenis",
+      "Framer-motion",
+    ],
+  },
+  {
+    id: 6,
     href: "https://my-project-web-app.netlify.app",
     title: "Apple web",
     description:
@@ -78,42 +114,6 @@ export const projects = [
       "Husky",
       "Lint-staged",
       "clsx",
-    ],
-  },
-  {
-    id: 5,
-    href: "https://github.com/cloudmenson/SecureNote-Browser-Extention-Manifest-V3",
-    title: "Secure Note - Browser Extension",
-    description:
-      "A cross-browser extension for Chrome and IE that allows you to create, encrypt, and store domain-bound notes. It features a floating button, a pop-up UI window, local storage with encryption, and element visibility settings. Pure JS, CSS, and Manifest V3 are used.",
-    src: Img.Note,
-    skills: [
-      "Vanilla JS",
-      "Manifest V3",
-      "Chrome API",
-      "HTML",
-      "CSS",
-      "Storage API",
-      "Encryption",
-    ],
-  },
-  {
-    id: 6,
-    href: "https://nft-crypto-market.netlify.app",
-    title: "OpenSea - NFT Crypto Market (Under development)",
-    description:
-      "A modern NFT marketplace inspired by OpenSea, featuring live crypto data, trending collections, 3D animations, and a fully responsive design. Built with Next.js 15, TypeScript, and Framer Motion to ensure a smooth and futuristic user experience.",
-    src: Img.NFTCryptoMarket,
-    skills: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "TailwindCSS",
-      "Framer Motion",
-      "Redux Toolkit",
-      "MockAPI",
-      "Swiper.js",
-      "FSD Architecture",
     ],
   },
 ];
