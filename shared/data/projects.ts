@@ -4,7 +4,7 @@ export const projects = [
   {
     id: 1,
     href: "https://nft-crypto-market.netlify.app",
-    title: "OpenSea - NFT Crypto Market (Under development)",
+    title: "OpenSea - NFT Crypto Market",
     description:
       "A modern NFT marketplace inspired by OpenSea, featuring live crypto data, trending collections, 3D animations, and a fully responsive design. Built with Next.js 15, TypeScript, and Framer Motion to ensure a smooth and futuristic user experience.",
     src: Img.NFTCryptoMarket,
