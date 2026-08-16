@@ -1,3 +1,4 @@
-export { projects } from "./projects";
-export { skills } from "./skills";
-export { socialData } from "./social-data";
+export { projects, projectKinds, type Project } from "./projects";
+export { skills, skillGroups, type SkillGroup } from "./skills";
+export { socialData, type SocialLink } from "./social-data";
+export { experience, type ExperienceEntry } from "./experience";

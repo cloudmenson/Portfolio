@@ -36,10 +36,10 @@ export const Button: FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none rounded-md";
 
   const variants: Record<string, string> = {
-    ghost: "text-gray-900",
-    primary: "bg-blue-600 text-white",
-    secondary: "bg-gray-600 text-white",
-    outline: "border-2 border-gray-300 text-gray-900 hover:border-emerald-500",
+    ghost: "text-fg hover:text-accent",
+    primary: "bg-accent text-accent-contrast hover:bg-accent-strong",
+    secondary: "bg-surface-strong text-fg border border-line hover:border-accent",
+    outline: "border-2 border-line-strong text-fg hover:border-accent hover:text-accent",
   };
 
   const sizes: Record<string, string> = {

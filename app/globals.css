@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/* ── Theme variants ──────────────────────────────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+/* ── Semantic tokens ─────────────────────────────────────────────────────── */
+/* Dark is the default; `.light` on <html> swaps the palette. Every component
+   styles against these tokens, so a theme switch never touches a component. */
+:root {
+  --bg: #06090a;
+  --bg-elevated: #0b1012;
+  --surface: rgb(255 255 255 / 0.03);
+  --surface-strong: rgb(255 255 255 / 0.06);
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.16);
+  --fg: #e9efee;
+  --fg-muted: #8c9a97;
+  --fg-subtle: #5d6b68;
+  --accent: #10b981;
+  --accent-strong: #34d399;
+  --accent-contrast: #04120d;
+  --glow: rgb(16 185 129 / 0.28);
+  --grid: rgb(255 255 255 / 0.04);
+  --shadow-card: 0 24px 60px -30px rgb(0 0 0 / 0.9);
+}
+
+:root.light {
+  --bg: #f5f7f6;
+  --bg-elevated: #ffffff;
+  --surface: rgb(6 20 16 / 0.03);
+  --surface-strong: rgb(6 20 16 / 0.06);
+  --line: rgb(6 20 16 / 0.1);
+  --line-strong: rgb(6 20 16 / 0.2);
+  --fg: #0a1512;
+  --fg-muted: #4e5c58;
+  --fg-subtle: #77837f;
+  --accent: #059669;
+  --accent-strong: #047857;
+  --accent-contrast: #ffffff;
+  --glow: rgb(5 150 105 / 0.2);
+  --grid: rgb(6 20 16 / 0.05);
+  --shadow-card: 0 24px 60px -34px rgb(6 20 16 / 0.35);
+}
+
+/* `inline` keeps utilities pointing at the live custom property, so the
+   palette can change at runtime without regenerating any CSS. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-contrast: var(--accent-contrast);
+
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-montserrat), sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Lenis drives the scroll itself; native smooth scrolling fights it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+    scroll-behavior: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-montserrat), Arial, sans-serif;
+    /* `clip`, not `hidden`: `overflow-x: hidden` turns <body> into a scroll
+       container, which breaks the sticky header. */
+    overflow-x: clip;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Custom cursor replaces the native one on precise pointers only. */
+  @media (hover: hover) and (pointer: fine) {
+    body[data-custom-cursor="on"],
+    body[data-custom-cursor="on"] * {
+      cursor: none !important;
+    }
+
+    /* Text fields keep the I-beam — the caret position has to stay visible. */
+    body[data-custom-cursor="on"] input,
+    body[data-custom-cursor="on"] textarea {
+      cursor: text !important;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+    border: 3px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+}
+
+/* ── Utilities ───────────────────────────────────────────────────────────── */
+@utility text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--fg) 0%,
+    var(--fg) 40%,
+    var(--accent-strong) 70%,
+    var(--fg) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 6s linear infinite;
+}
+.animate-float-slow {
+  animation: float-slow 18s ease-in-out infinite;
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

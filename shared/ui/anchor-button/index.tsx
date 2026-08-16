@@ -1,64 +1,50 @@
 "use client";
 
 import { ReactNode } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { cn } from "@/shared/lib/cn";
+import { useLenis } from "@/shared/ui/lenis-provider";
 
 interface IAnchorButton extends React.ComponentProps<typeof motion.span> {
+  /** In-page target, e.g. `#about-section`. */
   href: string;
   className?: string;
   children: ReactNode;
   motionSpanClass?: string;
+  /** Extra offset applied to the scroll target, in px. */
+  offset?: number;
 }
 
 export const AnchorButton = ({
   href,
   children,
   className,
+  offset = -80,
   motionSpanClass,
   ...motionProps
 }: IAnchorButton) => {
-  const anchorClass = cn(
-    "inline-flex items-center gap-2 text-lg font-medium",
-    className
-  );
+  const { scrollTo } = useLenis();
 
-  function smoothScrollTo(targetY: number, duration = 1000) {
-    const startY = window.scrollY;
-    const diff = targetY - startY;
-    let start: number;
-
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const time = timestamp - start;
-      const percent = Math.min(time / duration, 1);
-
-      window.scrollTo(0, startY + diff * percent);
-
-      if (time < duration) {
-        requestAnimationFrame(step);
-      }
-    };
-
-    requestAnimationFrame(step);
-  }
-
-  const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY;
-      smoothScrollTo(y, 400);
-    }
+    scrollTo(href, offset);
+    // Keep the URL shareable without letting the browser jump the scroll.
+    window.history.replaceState(null, "", href);
   };
 
   return (
-    <Link onClick={onClick} href={href} className={anchorClass}>
+    <a
+      href={href}
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center gap-2 text-lg font-medium",
+        className
+      )}
+    >
       <motion.span className={motionSpanClass} {...motionProps}>
         {children}
       </motion.span>
-    </Link>
+    </a>
   );
 };

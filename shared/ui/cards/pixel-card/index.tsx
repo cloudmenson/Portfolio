@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import { JSX } from "react";
 
+import { usePrefersReducedMotion } from "@/shared/lib/use-media-query";
+
 class Pixel {
   width: number;
   height: number;
@@ -195,10 +197,9 @@ export default function PixelCard({
   const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(
     null
   );
-  const timePreviousRef = useRef(performance.now());
-  const reducedMotion = useRef(
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  ).current;
+  const timePreviousRef = useRef(0);
+  // Read on the client only — `matchMedia` does not exist while pre-rendering.
+  const reducedMotion = usePrefersReducedMotion();
 
   const variantCfg: VariantConfig = VARIANTS[variant] || VARIANTS.default;
   const finalGap = gap ?? variantCfg.gap;
@@ -308,7 +309,7 @@ export default function PixelCard({
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
+  }, [finalGap, finalSpeed, finalColors, finalNoFocus, reducedMotion]);
 
   return (
     <div
@@ -318,7 +319,7 @@ export default function PixelCard({
       tabIndex={finalNoFocus ? -1 : 0}
       onBlur={finalNoFocus ? undefined : onBlur}
       onFocus={finalNoFocus ? undefined : onFocus}
-      className={`h-[250px] min-w-[400px] max-w-[400px] sm:max-w-[300px] relative overflow-hidden grid place-items-center border border-[#27272a] rounded-[25px] isolate transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
+      className={`relative isolate grid h-full w-full place-items-center overflow-hidden rounded-[inherit] transition-colors duration-200 ease-[cubic-bezier(0.5,1,0.89,1)] select-none ${className}`}
     >
       <canvas className="w-full h-full block" ref={canvasRef} />
       {children}

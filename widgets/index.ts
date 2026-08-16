@@ -1,6 +1,9 @@
-export { AboutSection } from "./about";
+export { DotNav } from "./dot-nav";
 export { Footer } from "./footer";
 export { Header } from "./header";
+export { AboutSection } from "./about";
 export { HeroSection } from "./hero";
-export { ProjectsSection } from "./projects";
 export { SkillsSection } from "./skills";
+export { ContactSection } from "./contact";
+export { ProjectsSection } from "./projects";
+export { ExperienceSection } from "./experience";

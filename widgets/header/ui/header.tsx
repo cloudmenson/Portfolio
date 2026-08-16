@@ -1,138 +1,183 @@
 "use client";
 
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, Variants } from "framer-motion";
+import { Command, Mail, Phone } from "lucide-react";
 
-import { cn } from "@/shared";
-import { EMAIL, PHONE } from "@/shared/config/constants";
+import {
+  cn,
+  NAV,
+  EMAIL,
+  PHONE,
+  useLenis,
+  ThemeToggle,
+  useActiveSection,
+  openCommandPalette,
+} from "@/shared";
 
 const headerVariants: Variants = {
   hidden: { y: -60, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 120, damping: 18, duration: 0.6 },
+    transition: { type: "spring", stiffness: 120, damping: 18 },
   },
 };
 
-const linkVariants: Variants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.2 + i * 0.15, duration: 0.4 },
-  }),
-};
+const NAV_IDS = NAV.map((item) => item.id);
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollTo } = useLenis();
+  const active = useActiveSection(NAV_IDS);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const go = (id: string) => {
+    setOpen(false);
+    scrollTo(`#${id}`, -80);
+  };
 
   return (
-    <>
-      <motion.header
-        id="header"
-        initial="hidden"
-        animate="visible"
-        variants={headerVariants}
-        className="w-full flex items-center justify-between border-b border-emerald-900 px-6 py-4 sm:px-10 xl:px-30 xl:py-6 xl:px-10"
-      >
-        <motion.p
-          animate={{ opacity: 1, scale: 1 }}
-          initial={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="font-bold flex items-center gap-0.5 text-2xl sm:text-3xl"
+    <motion.header
+      id="header"
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
+      className={cn(
+        "sticky top-0 z-[100] w-full transition-all duration-300",
+        scrolled
+          ? "border-b border-line bg-bg/70 backdrop-blur-xl"
+          : "border-b border-transparent"
+      )}
+    >
+      <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-6 py-4 sm:px-10 xl:px-24">
+        <button
+          onClick={() => go("hero-section")}
+          className="flex shrink-0 items-center gap-0.5 text-2xl font-bold sm:text-3xl"
         >
-          <span className="text-emerald-500 select-none">.</span>
+          <span className="select-none text-accent">.</span>
           Hrytsenko
-        </motion.p>
+        </button>
 
-        <motion.nav
-          initial="hidden"
-          animate="visible"
-          variants={linkVariants}
-          className="hidden md:flex font-bold flex-row gap-6 lg:gap-10 text-base lg:text-lg"
-        >
-          <motion.a
-            custom={0}
-            initial="hidden"
-            animate="visible"
-            variants={linkVariants}
-            href={`mailto:${EMAIL}`}
-            className="relative group"
+        <nav className="hidden items-center gap-1 lg:flex">
+          {NAV.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => go(item.id)}
+              className={cn(
+                "relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors",
+                active === item.id
+                  ? "text-fg"
+                  : "text-fg-muted hover:text-fg"
+              )}
+            >
+              {/* Shared layoutId lets the pill slide between items. */}
+              {active === item.id && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 rounded-full border border-accent/40 bg-accent/10"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
+              <span className="relative">{item.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            onClick={openCommandPalette}
+            aria-label="Open command palette"
+            className="hidden items-center gap-2 rounded-full border border-line px-3 py-2 text-xs text-fg-muted transition-colors hover:border-accent hover:text-accent md:flex"
           >
-            {EMAIL}
+            <Command className="h-3.5 w-3.5" />
+            <span className="font-mono">K</span>
+          </button>
 
-            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-emerald-500/80 transition-all duration-500 ease-out group-hover:w-full" />
-          </motion.a>
+          <ThemeToggle />
 
-          <motion.a
-            custom={1}
-            initial="hidden"
-            animate="visible"
-            href={`tel:${PHONE}`}
-            variants={linkVariants}
-            className="relative group"
+          <button
+            aria-expanded={open}
+            aria-label="Toggle navigation"
+            onClick={() => setOpen((o) => !o)}
+            className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-full border border-line lg:hidden"
           >
-            {PHONE}
-
-            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-emerald-500/80 transition-all duration-500 ease-out group-hover:w-full" />
-          </motion.a>
-        </motion.nav>
-
-        {/* Mobile hamburger */}
-        <motion.button
-          whileTap={{ scale: 0.96 }}
-          aria-label="Toggle navigation"
-          onClick={() => setOpen((o) => !o)}
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-emerald-900"
-        >
-          <span className="sr-only">Menu</span>
-
-          <span
-            className={cn(
-              "relative block h-0.5 w-6 bg-emerald-500 transition-all duration-300",
-              open && "translate-y-1.5 rotate-45"
-            )}
-          />
-          <span
-            className={cn(
-              "relative block h-0.5 w-6 bg-emerald-500 transition-all duration-300 my-1",
-              open ? "opacity-0" : "opacity-100"
-            )}
-          />
-          <span
-            className={cn(
-              "relative block h-0.5 w-6 bg-emerald-500 transition-all duration-300",
-              open && "-translate-y-1.5 -rotate-45"
-            )}
-          />
-        </motion.button>
-      </motion.header>
-
-      <motion.div
-        initial={false}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="md:hidden overflow-hidden border-b border-emerald-900"
-        animate={
-          open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
-        }
-      >
-        <div className="px-4 sm:px-6 md:px-10 lg:px-30 py-3 flex flex-col gap-3 text-base font-semibold">
-          <a
-            href={`mailto:${EMAIL}`}
-            className="w-max active:text-emerald-500 transition-colors duration-0"
-          >
-            {EMAIL}
-          </a>
-
-          <a
-            href={`tel:${PHONE}`}
-            className="w-max active:text-emerald-500 transition-colors duration-0"
-          >
-            {PHONE}
-          </a>
+            <span
+              className={cn(
+                "block h-0.5 w-5 bg-accent transition-transform duration-300",
+                open && "translate-y-1.5 rotate-45"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-0.5 w-5 bg-accent transition-opacity duration-300",
+                open && "opacity-0"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-0.5 w-5 bg-accent transition-transform duration-300",
+                open && "-translate-y-1.5 -rotate-45"
+              )}
+            />
+          </button>
         </div>
-      </motion.div>
-    </>
+      </div>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            exit={{ height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            transition={{ duration: 0.28, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-line bg-bg/95 backdrop-blur-xl lg:hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 py-4 sm:px-10">
+              {NAV.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => go(item.id)}
+                  className={cn(
+                    "w-full rounded-lg px-3 py-2.5 text-left text-base font-semibold transition-colors",
+                    active === item.id
+                      ? "bg-accent/10 text-accent"
+                      : "text-fg-muted"
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+
+              <div className="mt-3 flex flex-col gap-3 border-t border-line pt-4 text-sm">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="flex items-center gap-2 text-fg-muted"
+                >
+                  <Mail className="h-4 w-4 text-accent" />
+                  {EMAIL}
+                </a>
+
+                <a
+                  href={`tel:${PHONE}`}
+                  className="flex items-center gap-2 text-fg-muted"
+                >
+                  <Phone className="h-4 w-4 text-accent" />
+                  {PHONE}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };

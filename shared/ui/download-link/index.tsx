@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import Link, { LinkProps } from "next/link";
 
 import { cn } from "@/shared/lib/cn";
+import { fireConfetti } from "@/shared/lib/confetti";
 
-export interface DownloadLinkProps extends LinkProps {
+export interface DownloadLinkProps
+  extends Omit<React.ComponentPropsWithoutRef<"a">, "ref"> {
+  href: string;
   children: React.ReactNode;
   /** Іконка зліва від тексту */
   leftIcon?: React.ReactNode;
@@ -24,10 +27,13 @@ export interface DownloadLinkProps extends LinkProps {
   hoverScale?: number;
   /** Масштабування при tap */
   tapScale?: number;
+  /** Салют з конфеті по кліку */
+  celebrate?: boolean;
 }
 
 export const DownloadLink: React.FC<DownloadLinkProps> = ({
   href,
+  onClick,
   children,
   leftIcon,
   rightIcon,
@@ -37,13 +43,28 @@ export const DownloadLink: React.FC<DownloadLinkProps> = ({
   tapScale = 0.97,
   withHover = true,
   hoverScale = 1.03,
+  celebrate = false,
   ...linkProps
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (celebrate) {
+      // Burst from the link itself so the effect reads as caused by the click.
+      const rect = e.currentTarget.getBoundingClientRect();
+      fireConfetti({
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight,
+      });
+    }
+
+    onClick?.(e);
+  };
+
   return (
     <Link
       href={href}
+      onClick={handleClick}
       {...linkProps}
-      className={cn("group inline-flex items-center", className)}
+      className={cn("group inline-flex", className)}
     >
       <motion.span
         initial={mount ? { y: 6, opacity: 0 } : undefined}
@@ -51,9 +72,7 @@ export const DownloadLink: React.FC<DownloadLinkProps> = ({
         whileTap={withTap ? { scale: tapScale } : undefined}
         whileHover={withHover ? { scale: hoverScale } : undefined}
         transition={{ type: "spring", stiffness: 420, damping: 28, mass: 0.6 }}
-        className={cn(
-          "inline-flex items-center gap-2 italic font-extrabold tracking-wide"
-        )}
+        className="inline-flex items-center gap-2 italic font-extrabold tracking-wide"
       >
         {leftIcon && (
           <span className="inline-flex items-center justify-center">

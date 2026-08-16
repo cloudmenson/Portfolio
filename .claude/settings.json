@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(npm uninstall *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} type=%{content_type} size=%{size_download}\\\\n\" http://localhost:3000/opengraph-image)",
+      "Bash(grep -v \"^.*href={\\\\`#\")",
+      "Bash(grep -v 'href={`#')",
+      "Bash(sips -g pixelWidth -g pixelHeight about-avatar.jpeg)",
+      "Bash(curl -s http://localhost:3000 -o /private/tmp/claude-501/-Users-cloudmenson-Portfolio/68ce2f92-e4cf-40e6-8c63-3b2289c8b7ce/scratchpad/page2.html -w \"HTTP %{http_code}\\\\n\")"
+    ]
+  }
+}
