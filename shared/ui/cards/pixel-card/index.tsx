@@ -112,6 +112,8 @@ class Pixel {
   }
 }
 
+type PixelAnimation = "appear" | "disappear";
+
 function getEffectiveSpeed(value: number, reducedMotion: boolean) {
   const min = 0;
   const max = 100;
@@ -198,7 +200,7 @@ export default function PixelCard({
     null
   );
   const timePreviousRef = useRef(0);
-  // Read on the client only — `matchMedia` does not exist while pre-rendering.
+
   const reducedMotion = usePrefersReducedMotion();
 
   const variantCfg: VariantConfig = VARIANTS[variant] || VARIANTS.default;
@@ -248,7 +250,7 @@ export default function PixelCard({
     pixelsRef.current = pxs;
   };
 
-  const doAnimate = (fnName: keyof Pixel) => {
+  const doAnimate = (fnName: PixelAnimation) => {
     animationRef.current = requestAnimationFrame(() => doAnimate(fnName));
     const timeNow = performance.now();
     const timePassed = timeNow - timePreviousRef.current;
@@ -265,7 +267,7 @@ export default function PixelCard({
     let allIdle = true;
     for (let i = 0; i < pixelsRef.current.length; i++) {
       const pixel = pixelsRef.current[i];
-      // @ts-ignore
+
       pixel[fnName]();
       if (!pixel.isIdle) {
         allIdle = false;
@@ -276,7 +278,7 @@ export default function PixelCard({
     }
   };
 
-  const handleAnimation = (name: keyof Pixel) => {
+  const handleAnimation = (name: PixelAnimation) => {
     if (animationRef.current !== null) {
       cancelAnimationFrame(animationRef.current);
     }
@@ -308,7 +310,7 @@ export default function PixelCard({
         cancelAnimationFrame(animationRef.current);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [finalGap, finalSpeed, finalColors, finalNoFocus, reducedMotion]);
 
   return (

@@ -9,11 +9,10 @@ import { usePrefersReducedMotion } from "@/shared/lib/use-media-query";
 interface IMagnetic {
   children: React.ReactNode;
   className?: string;
-  /** How far the element is allowed to drift toward the pointer, in px. */
+
   strength?: number;
 }
 
-/** Pulls its child toward the cursor while hovered, then springs back. */
 export const Magnetic = ({
   children,
   className,

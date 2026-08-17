@@ -10,11 +10,6 @@ import {
 
 const INTERACTIVE = 'a, button, [role="button"], input, textarea, [data-cursor]';
 
-/**
- * Replaces the native pointer with a springy ring that reacts to what is under
- * it. Written in-house rather than pulled from `react-animated-cursor`, which
- * still pins its peer range to React 18.
- */
 export const CustomCursor = () => {
   const pointerFine = useIsPointerFine();
   const reducedMotion = usePrefersReducedMotion();
@@ -31,8 +26,7 @@ export const CustomCursor = () => {
   const ringY = useSpring(y, { stiffness: 380, damping: 32, mass: 0.55 });
 
   useEffect(() => {
-    // The `cursor: none` rule is scoped to this attribute, so the native
-    // cursor comes back the moment the component bails out.
+
     document.body.dataset.customCursor = enabled ? "on" : "off";
     return () => {
       delete document.body.dataset.customCursor;
@@ -79,7 +73,7 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Ring — lags behind the pointer, grows over interactive targets. */}
+
       <motion.div
         aria-hidden
         style={{ x: ringX, y: ringY }}
@@ -104,7 +98,6 @@ export const CustomCursor = () => {
         </motion.div>
       </motion.div>
 
-      {/* Dot — tracks the pointer exactly so clicks still feel precise. */}
       <motion.div
         aria-hidden
         style={{ x, y }}

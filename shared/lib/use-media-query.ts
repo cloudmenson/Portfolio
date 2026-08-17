@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/** SSR-safe `matchMedia`. Returns `false` until the client has mounted. */
 export const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
 

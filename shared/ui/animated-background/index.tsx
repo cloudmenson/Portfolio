@@ -1,55 +1,46 @@
 "use client";
 
 import { useEffect } from "react";
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useMotionTemplate,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 import {
   useIsPointerFine,
   usePrefersReducedMotion,
 } from "@/shared/lib/use-media-query";
 
-/**
- * Fixed backdrop for the whole page: a dot grid, two drifting accent blobs, a
- * cursor-following spotlight, and a film-grain layer. Purely decorative and
- * fully pointer-transparent.
- */
+const SPOTLIGHT = 900;
+
 export const AnimatedBackground = () => {
   const pointerFine = useIsPointerFine();
   const reducedMotion = usePrefersReducedMotion();
+  const showSpotlight = pointerFine && !reducedMotion;
 
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.2);
-  const smx = useSpring(mx, { stiffness: 60, damping: 30, mass: 0.8 });
-  const smy = useSpring(my, { stiffness: 60, damping: 30, mass: 0.8 });
-
-  const xPct = useTransform(smx, (v) => v * 100);
-  const yPct = useTransform(smy, (v) => v * 100);
-  const spotlight = useMotionTemplate`radial-gradient(560px circle at ${xPct}% ${yPct}%, var(--glow), transparent 70%)`;
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const x = useSpring(mx, { stiffness: 70, damping: 30, mass: 0.7 });
+  const y = useSpring(my, { stiffness: 70, damping: 30, mass: 0.7 });
 
   useEffect(() => {
-    if (!pointerFine || reducedMotion) return;
+    if (!showSpotlight) return;
+
+    mx.jump(window.innerWidth / 2 - SPOTLIGHT / 2);
+    my.jump(window.innerHeight / 3 - SPOTLIGHT / 2);
 
     const onMove = (e: MouseEvent) => {
-      mx.set(e.clientX / window.innerWidth);
-      my.set(e.clientY / window.innerHeight);
+      mx.set(e.clientX - SPOTLIGHT / 2);
+      my.set(e.clientY - SPOTLIGHT / 2);
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, [pointerFine, reducedMotion, mx, my]);
+  }, [showSpotlight, mx, my]);
 
   return (
     <div
       aria-hidden
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* Dot grid, faded out toward the edges. */}
+
       <div
         className="absolute inset-0 [background-size:34px_34px] [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_85%)]"
         style={{
@@ -58,23 +49,38 @@ export const AnimatedBackground = () => {
         }}
       />
 
-      {/* Slow-drifting colour blobs. */}
-      <div className="absolute -left-40 top-[-10%] h-[38rem] w-[38rem] rounded-full bg-accent/12 blur-[130px] animate-float-slow" />
       <div
-        className="absolute -right-40 top-[45%] h-[32rem] w-[32rem] rounded-full bg-sky-500/8 blur-[130px] animate-float-slow"
-        style={{ animationDelay: "-9s" }}
+        className="animate-float-slow absolute -left-[18%] top-[-18%] h-[46rem] w-[46rem] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, var(--blob-warm) 0%, transparent 68%)",
+        }}
+      />
+      <div
+        className="animate-float-slow absolute -right-[14%] top-[42%] h-[40rem] w-[40rem] rounded-full"
+        style={{
+          animationDelay: "-9s",
+          background:
+            "radial-gradient(circle, var(--blob-cool) 0%, transparent 68%)",
+        }}
       />
 
-      {pointerFine && !reducedMotion && (
+      {showSpotlight && (
         <motion.div
-          className="absolute inset-0 opacity-70"
-          style={{ background: spotlight }}
+          style={{
+            x,
+            y,
+            width: SPOTLIGHT,
+            height: SPOTLIGHT,
+            background:
+              "radial-gradient(circle, var(--glow) 0%, transparent 62%)",
+          }}
+          className="absolute left-0 top-0 rounded-full"
         />
       )}
 
-      {/* Film grain — an inline SVG so nothing extra is fetched. */}
       <div
-        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",

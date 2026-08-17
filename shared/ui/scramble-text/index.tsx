@@ -10,16 +10,12 @@ const GLYPHS = "!<>-_\\/[]{}—=+*^?#01";
 interface IScrambleText {
   text: string;
   className?: string;
-  /** Decode on mount instead of waiting for a hover. */
+
   autoPlay?: boolean;
-  /** Frames each character spends scrambling before it locks in. */
+
   speed?: number;
 }
 
-/**
- * Decodes `text` character by character, showing random glyphs until each
- * position settles. Falls back to plain text when motion is reduced.
- */
 export const ScrambleText = ({
   text,
   className,
@@ -70,7 +66,7 @@ export const ScrambleText = ({
   useEffect(() => {
     if (autoPlay) scramble();
     return stop;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [autoPlay, text, reducedMotion]);
 
   return (

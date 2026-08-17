@@ -17,34 +17,23 @@ import {
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <TiltCard maxTilt={4} spotlight={false} className="group h-full">
-    {/*
-      Assets are 1080×1350 posters, so the frame matches 4:5 exactly and the
-      artwork is never cropped. The whole tile is one link; the repo button
-      sits above it rather than inside, since nested anchors are invalid.
-    */}
-    {/*
-      `translateZ(0)` gives the article its own compositing layer so the
-      rounded corners actually clip the artwork — without it the tilted
-      ancestor makes the image square off at the corners.
-    */}
-    <article className="relative isolate aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-bg-elevated transition-colors duration-300 [transform:translateZ(0)] group-hover:border-accent/50">
+
+    <article className="relative isolate aspect-[4/5] overflow-hidden rounded-3xl bg-bg-elevated [transform:translateZ(0)]">
       <Image
         fill
         loading="lazy"
         src={project.src}
         alt={project.title}
         sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-        className="rounded-[inherit] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+        className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
       />
 
-      {/* Scrim — keeps the copy readable over both light and dark artwork. */}
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-t from-bg via-bg/85 via-40% to-transparent" />
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-bg/70 to-transparent to-30%" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/85 via-40% to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg/70 to-transparent to-30%" />
 
-      {/* Meta row */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[15] flex items-start justify-between gap-3 p-5">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-line-strong bg-bg/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-fg-muted backdrop-blur">
+          <span className="rounded-full border border-line-strong bg-bg/85 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-fg-muted">
             {project.kind}
           </span>
 
@@ -61,7 +50,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </span>
       </div>
 
-      {/* Copy */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[15] flex flex-col gap-3 p-5 sm:p-6">
         <div className="flex items-end justify-between gap-3">
           <h3 className="font-display text-xl font-bold leading-tight sm:text-2xl">
@@ -81,7 +69,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
           {project.skills.slice(0, 4).map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-line-strong bg-bg/50 px-2.5 py-1 font-mono text-[10px] text-fg-muted backdrop-blur"
+              className="rounded-full border border-line-strong bg-bg/80 px-2.5 py-1 font-mono text-[10px] text-fg-muted"
             >
               {skill}
             </span>
@@ -95,11 +83,11 @@ const ProjectCard = ({ project }: { project: Project }) => (
         </div>
       </div>
 
-      {/*
-        The card-wide link is the LAST child and carries the highest z-index of
-        the non-interactive layers, so nothing painted after it can swallow the
-        click. Everything above it is explicitly `pointer-events-none`.
-      */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[16] rounded-[inherit] border border-line transition-colors duration-300 group-hover:border-accent/50"
+      />
+
       <a
         target="_blank"
         rel="noreferrer"
@@ -109,14 +97,13 @@ const ProjectCard = ({ project }: { project: Project }) => (
         className="absolute inset-0 z-20 rounded-[inherit]"
       />
 
-      {/* Sits above the card link so the repo stays independently clickable. */}
       {project.repo && (
         <a
           target="_blank"
           rel="noreferrer"
           href={project.repo}
           aria-label={`${project.title} source code`}
-          className="absolute right-5 top-14 z-30 rounded-full border border-line-strong bg-bg/70 p-2 text-fg-muted backdrop-blur transition-colors hover:border-accent hover:text-accent"
+          className="absolute right-5 top-14 z-30 rounded-full border border-line-strong bg-bg/92 p-2 text-fg-muted transition-colors hover:border-accent hover:text-accent"
         >
           <Github className="h-4 w-4" />
         </a>

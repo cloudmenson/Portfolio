@@ -1,7 +1,5 @@
 import type { StaticImageData } from "next/image";
 
-// Imported from the module itself rather than the `@/shared` barrel — going
-// through the barrel would make data ↔ ui a cycle.
 import { Img } from "@/shared/assets";
 
 export interface Project {
@@ -10,7 +8,7 @@ export interface Project {
   repo?: string;
   title: string;
   year: string;
-  /** Short label shown on the card, e.g. `Commercial`. */
+
   kind: string;
   featured?: boolean;
   description: string;
@@ -152,7 +150,6 @@ export const projects: Project[] = [
   },
 ];
 
-/** Every distinct `kind`, prefixed with the catch-all used by the filter UI. */
 export const projectKinds = [
   "All",
   ...Array.from(new Set(projects.map((p) => p.kind))),

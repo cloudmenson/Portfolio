@@ -78,12 +78,12 @@ export const HeroSection = () => {
     >
       <div className="flex flex-col items-start gap-12 sm:flex-row sm:items-center sm:justify-between">
         <div className="w-full">
-          {/* Availability pill */}
+
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-fg-muted backdrop-blur"
+            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-fg-muted"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
@@ -92,11 +92,6 @@ export const HeroSection = () => {
             Available for new projects
           </motion.div>
 
-          {/*
-            The headline is split into per-letter spans for the hover effect,
-            which screen readers would spell out one character at a time — so
-            the accessible name lives in a visually hidden copy instead.
-          */}
           <h1 className="mb-8 sm:mb-10">
             <span className="sr-only">
               Danylo Hrytsenko — Front-end developer
@@ -128,7 +123,6 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          {/* Rotating tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -196,7 +190,6 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Socials + scroll cue */}
         <div className="flex w-full flex-row items-center justify-between gap-10 sm:w-auto sm:flex-col sm:justify-center sm:gap-24">
           <div className="flex flex-row gap-6 sm:flex-col sm:gap-5">
             {socialData.map((soc, idx) => (
@@ -237,7 +230,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Stats strip */}
       <motion.div
         viewport={{ once: true }}
         initial={{ opacity: 0, y: 20 }}
@@ -248,7 +240,7 @@ export const HeroSection = () => {
         {STATS.map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col gap-1 bg-bg/60 px-6 py-5 backdrop-blur"
+            className="flex flex-col gap-1 bg-bg-elevated px-6 py-5"
           >
             <span className="font-display text-3xl font-bold text-accent">
               {stat.value}

@@ -6,7 +6,6 @@ export const alt = `${SITE.name} — ${SITE.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/** Generated at request time, so the card always matches the site copy. */
 export default function OpengraphImage() {
   return new ImageResponse(
     (

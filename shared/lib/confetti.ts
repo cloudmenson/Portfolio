@@ -25,13 +25,6 @@ const PALETTE = [
 const GRAVITY = 0.32;
 const DRAG = 0.988;
 
-/**
- * Dependency-free confetti burst. Draws to a throwaway full-screen canvas that
- * removes itself once every particle has fallen out of view, so nothing stays
- * mounted between bursts.
- *
- * @param origin normalised launch point, `{ x: 0.5, y: 0.5 }` = screen centre
- */
 export const fireConfetti = (
   origin: { x: number; y: number } = { x: 0.5, y: 0.4 },
   count = 120
@@ -99,7 +92,7 @@ export const fireConfetti = (
       ctx.rotate(p.rotation);
       ctx.globalAlpha = Math.max(0, p.life);
       ctx.fillStyle = p.color;
-      // Squashed rect reads as a tumbling paper flake rather than a dot.
+
       ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
       ctx.restore();
     }

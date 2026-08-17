@@ -41,10 +41,6 @@ export const ContactSection = () => {
     }
   };
 
-  /**
-   * No backend behind this site, so the form composes a prefilled mail draft
-   * instead of pretending to submit somewhere.
-   */
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -85,8 +81,6 @@ export const ContactSection = () => {
                 <contact.Icon className="h-5 w-5" />
               </span>
 
-              {/* mailto:/tel: hand off to another app — a new tab would just
-                  leave an empty one behind, so only web links get one. */}
               <a
                 href={contact.href}
                 rel="noreferrer"

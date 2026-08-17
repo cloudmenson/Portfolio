@@ -6,7 +6,6 @@ import { cn, NAV, useLenis, useActiveSection } from "@/shared";
 
 const NAV_IDS = NAV.map((item) => item.id);
 
-/** Fixed rail of section markers on the right edge of wide viewports. */
 export const DotNav = () => {
   const { scrollTo } = useLenis();
   const active = useActiveSection(NAV_IDS);

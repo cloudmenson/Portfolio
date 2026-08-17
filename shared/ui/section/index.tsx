@@ -10,7 +10,6 @@ interface ISection {
   children: React.ReactNode;
 }
 
-/** Shared horizontal rhythm and vertical spacing for every page section. */
 export const Section = ({ id, className, children }: ISection) => (
   <section
     id={id}
@@ -25,7 +24,7 @@ export const Section = ({ id, className, children }: ISection) => (
 
 interface ISectionHeading {
   title: string;
-  /** Two-digit marker rendered above the title, e.g. `01`. */
+
   index?: string;
   subtitle?: string;
   className?: string;

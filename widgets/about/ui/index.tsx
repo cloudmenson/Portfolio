@@ -83,7 +83,7 @@ export const AboutSection = () => {
       />
 
       <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-16">
-        {/* Profile card */}
+
         <motion.aside
           viewport={{ once: true }}
           initial={{ opacity: 0, y: 20 }}

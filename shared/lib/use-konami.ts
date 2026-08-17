@@ -15,12 +15,10 @@ const SEQUENCE = [
   "a",
 ];
 
-/** Fires `onUnlock` when the Konami code is typed anywhere on the page. */
 export const useKonami = (onUnlock: () => void) => {
   const progress = useRef(0);
   const handler = useRef(onUnlock);
 
-  // Keep the latest callback without re-binding the listener on every render.
   useEffect(() => {
     handler.current = onUnlock;
   }, [onUnlock]);
@@ -34,7 +32,7 @@ export const useKonami = (onUnlock: () => void) => {
       const pressed = e.key.length === 1 ? e.key.toLowerCase() : e.key;
 
       if (pressed !== expected) {
-        // A wrong key may still be a valid restart of the sequence.
+
         progress.current = pressed === SEQUENCE[0] ? 1 : 0;
         return;
       }

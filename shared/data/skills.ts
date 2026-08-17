@@ -42,5 +42,4 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-/** Flat list, kept for the drag-to-reorder playground. */
 export const skills = skillGroups.flatMap((group) => group.items);

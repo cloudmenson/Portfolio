@@ -15,23 +15,12 @@ import { usePrefersReducedMotion } from "@/shared/lib/use-media-query";
 interface ITiltCard {
   className?: string;
   children: React.ReactNode;
-  /** Maximum rotation on each axis, in degrees. */
+
   maxTilt?: number;
-  /** Draw the cursor-following highlight. */
+
   spotlight?: boolean;
 }
 
-/**
- * 3D-tilts toward the pointer and tracks a soft highlight under it. Both
- * effects are skipped entirely when the visitor prefers reduced motion.
- *
- * `perspective` lives on the outer wrapper and the rotation on the inner
- * element — putting both on one node applies the perspective to that node's
- * children instead of to its own rotation, which flattens the effect into a
- * skew. `preserve-3d` is deliberately absent: it pulls descendants into a 3D
- * rendering context, where browsers stop honouring `overflow: hidden` on
- * rounded corners and the artwork bleeds past the border radius.
- */
 export const TiltCard = ({
   children,
   className,

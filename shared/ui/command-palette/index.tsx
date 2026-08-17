@@ -37,10 +37,6 @@ interface Command {
   run: () => void;
 }
 
-/**
- * ⌘K launcher. Every action the site offers — jumping to a section, copying
- * contact details, switching theme — is reachable from here without a mouse.
- */
 export const CommandPalette = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -145,7 +141,7 @@ export const CommandPalette = () => {
         run: () => window.open("https://t.me/cloudmenson", "_blank"),
       },
     ];
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [theme, toggleTheme, scrollTo]);
 
   const results = useMemo(() => {
@@ -157,7 +153,6 @@ export const CommandPalette = () => {
     );
   }, [commands, query]);
 
-  // Open / close shortcut, registered once for the lifetime of the page.
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) {
@@ -184,8 +179,6 @@ export const CommandPalette = () => {
     setQuery("");
     setActive(0);
 
-    // Lenis owns the scroll position, so `overflow: hidden` on <body> would
-    // not stop it — the instance has to be paused directly.
     lenis?.stop();
     document.body.style.overflow = "hidden";
 
@@ -205,7 +198,7 @@ export const CommandPalette = () => {
 
   const runCommand = (command: Command) => {
     setOpen(false);
-    // Let the overlay unmount first so scroll locking is already released.
+
     requestAnimationFrame(command.run);
   };
 

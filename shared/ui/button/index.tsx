@@ -8,15 +8,15 @@ import { cn } from "@/shared/lib/cn";
 type ButtonProps = HTMLMotionProps<"button"> & {
   size?: "sm" | "md" | "lg";
   variant?: "primary" | "secondary" | "outline" | "ghost";
-  /** Увімкнути анімацію появи */
+
   mount?: boolean;
-  /** Увімкнути/вимкнути анімацію наведення */
+
   withHover?: boolean;
-  /** Увімкнути/вимкнути анімацію кліку */
+
   withTap?: boolean;
-  /** Масштаб при hover */
+
   hoverScale?: number;
-  /** Масштаб при tap */
+
   tapScale?: number;
 };
 

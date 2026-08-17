@@ -1,13 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import {
-  motion,
-  useSpring,
-  useMotionValue,
-  useMotionTemplate,
-} from "framer-motion";
 
 import {
   NAV,
@@ -26,23 +21,7 @@ const MARQUEE_WORDS = [
 ];
 
 export const Footer: React.FC = () => {
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { scrollTo } = useLenis();
-
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const smx = useSpring(mx, { stiffness: 300, damping: 40, mass: 0.6 });
-  const smy = useSpring(my, { stiffness: 300, damping: 40, mass: 0.6 });
-  const glowBG = useMotionTemplate`radial-gradient(600px 600px at ${smx}px ${smy}px, var(--glow), transparent 60%)`;
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = wrapperRef.current;
-    if (!el) return;
-
-    const rect = el.getBoundingClientRect();
-    mx.set(e.clientX - rect.left);
-    my.set(e.clientY - rect.top);
-  };
 
   const year = new Date().getFullYear();
 
@@ -57,10 +36,10 @@ export const Footer: React.FC = () => {
 
   return (
     <footer id="footer" className="relative z-10">
-      {/* Marquee band */}
+
       <div className="relative flex overflow-hidden border-y border-line bg-surface py-5">
         <div className="animate-marquee flex shrink-0 [--marquee-duration:38s]">
-          {/* Duplicated once so the -50% translation loops seamlessly. */}
+
           {[0, 1].map((copy) => (
             <div key={copy} className="flex shrink-0 items-center">
               {MARQUEE_WORDS.map((word) => (
@@ -78,26 +57,18 @@ export const Footer: React.FC = () => {
       </div>
 
       <motion.div
-        ref={wrapperRef}
         initial={{ opacity: 0 }}
-        onMouseMove={handleMouseMove}
         animate={{ opacity: 1, transition: { duration: 0.4 } }}
         className="relative overflow-hidden bg-bg-elevated text-fg"
       >
-        <div className="pointer-events-none absolute inset-0">
-          <motion.div
-            className="absolute -inset-[40%] opacity-60 will-change-transform"
-            style={{ background: glowBG }}
-          />
 
-          <div
-            className="absolute inset-0 [background-size:20px_20px]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 1px 1px, var(--grid) 1px, transparent 0)",
-            }}
-          />
-        </div>
+        <div
+          className="pointer-events-none absolute inset-0 [background-size:20px_20px]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, var(--grid) 1px, transparent 0)",
+          }}
+        />
 
         <div className="relative mx-auto max-w-[1400px] px-6 py-16 sm:px-10 xl:px-24">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4">

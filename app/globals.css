@@ -1,12 +1,8 @@
 @import "tailwindcss";
 
-/* ── Theme variants ──────────────────────────────────────────────────────── */
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
-/* ── Semantic tokens ─────────────────────────────────────────────────────── */
-/* Dark is the default; `.light` on <html> swaps the palette. Every component
-   styles against these tokens, so a theme switch never touches a component. */
 :root {
   --bg: #06090a;
   --bg-elevated: #0b1012;
@@ -20,9 +16,11 @@
   --accent: #10b981;
   --accent-strong: #34d399;
   --accent-contrast: #04120d;
-  --glow: rgb(16 185 129 / 0.28);
+  --glow: rgb(16 185 129 / 0.22);
   --grid: rgb(255 255 255 / 0.04);
-  --shadow-card: 0 24px 60px -30px rgb(0 0 0 / 0.9);
+  --glass-bg: #0d1113;
+  --blob-warm: rgb(16 185 129 / 0.17);
+  --blob-cool: rgb(56 189 248 / 0.1);
 }
 
 :root.light {
@@ -38,13 +36,13 @@
   --accent: #059669;
   --accent-strong: #047857;
   --accent-contrast: #ffffff;
-  --glow: rgb(5 150 105 / 0.2);
+  --glow: rgb(5 150 105 / 0.16);
   --grid: rgb(6 20 16 / 0.05);
-  --shadow-card: 0 24px 60px -34px rgb(6 20 16 / 0.35);
+  --glass-bg: #ffffff;
+  --blob-warm: rgb(5 150 105 / 0.14);
+  --blob-cool: rgb(14 165 233 / 0.09);
 }
 
-/* `inline` keeps utilities pointing at the live custom property, so the
-   palette can change at runtime without regenerating any CSS. */
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-elevated: var(--bg-elevated);
@@ -64,14 +62,12 @@
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-/* ── Base ────────────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Lenis drives the scroll itself; native smooth scrolling fights it. */
   html.lenis,
   html.lenis body {
     height: auto;
@@ -86,8 +82,7 @@
     background: var(--bg);
     color: var(--fg);
     font-family: var(--font-montserrat), Arial, sans-serif;
-    /* `clip`, not `hidden`: `overflow-x: hidden` turns <body> into a scroll
-       container, which breaks the sticky header. */
+
     overflow-x: clip;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
@@ -103,14 +98,12 @@
     border-radius: 4px;
   }
 
-  /* Custom cursor replaces the native one on precise pointers only. */
   @media (hover: hover) and (pointer: fine) {
     body[data-custom-cursor="on"],
     body[data-custom-cursor="on"] * {
       cursor: none !important;
     }
 
-    /* Text fields keep the I-beam — the caret position has to stay visible. */
     body[data-custom-cursor="on"] input,
     body[data-custom-cursor="on"] textarea {
       cursor: text !important;
@@ -133,7 +126,6 @@
   }
 }
 
-/* ── Utilities ───────────────────────────────────────────────────────────── */
 @utility text-gradient {
   background: linear-gradient(
     100deg,
@@ -149,13 +141,10 @@
 }
 
 @utility glass {
-  background: var(--surface);
+  background: var(--glass-bg);
   border: 1px solid var(--line);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
-/* ── Keyframes ───────────────────────────────────────────────────────────── */
 @keyframes shimmer {
   to {
     background-position: 200% center;
@@ -191,7 +180,6 @@
   animation: marquee var(--marquee-duration, 40s) linear infinite;
 }
 
-/* ── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

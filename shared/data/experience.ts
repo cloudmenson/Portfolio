@@ -3,7 +3,7 @@ export interface ExperienceEntry {
   role: string;
   company: string;
   period: string;
-  /** `null` marks the current position. */
+
   end: string | null;
   summary: string;
   highlights: string[];

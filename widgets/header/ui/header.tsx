@@ -54,7 +54,7 @@ export const Header = () => {
       className={cn(
         "sticky top-0 z-[100] w-full transition-all duration-300",
         scrolled
-          ? "border-b border-line bg-bg/70 backdrop-blur-xl"
+          ? "border-b border-line bg-bg/92"
           : "border-b border-transparent"
       )}
     >
@@ -79,7 +79,7 @@ export const Header = () => {
                   : "text-fg-muted hover:text-fg"
               )}
             >
-              {/* Shared layoutId lets the pill slide between items. */}
+
               {active === item.id && (
                 <motion.span
                   layoutId="nav-pill"
@@ -139,7 +139,7 @@ export const Header = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             transition={{ duration: 0.28, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-line bg-bg/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-line bg-bg/97 lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4 sm:px-10">
               {NAV.map((item) => (

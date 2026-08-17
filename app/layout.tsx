@@ -80,7 +80,6 @@ export const viewport: Viewport = {
   ],
 };
 
-/** Structured data so search engines can render a rich person result. */
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -103,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        {/* Runs before paint so the stored theme is applied without a flash. */}
+
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"

@@ -11,23 +11,23 @@ export interface DownloadLinkProps
   extends Omit<React.ComponentPropsWithoutRef<"a">, "ref"> {
   href: string;
   children: React.ReactNode;
-  /** Іконка зліва від тексту */
+
   leftIcon?: React.ReactNode;
-  /** Іконка справа від тексту */
+
   rightIcon?: React.ReactNode;
-  /** Додаткові класи на зовнішній Link */
+
   className?: string;
-  /** Анімація появи */
+
   mount?: boolean;
-  /** Анімація при наведенні */
+
   withHover?: boolean;
-  /** Анімація при кліку */
+
   withTap?: boolean;
-  /** Масштабування при hover */
+
   hoverScale?: number;
-  /** Масштабування при tap */
+
   tapScale?: number;
-  /** Салют з конфеті по кліку */
+
   celebrate?: boolean;
 }
 
@@ -48,7 +48,7 @@ export const DownloadLink: React.FC<DownloadLinkProps> = ({
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (celebrate) {
-      // Burst from the link itself so the effect reads as caused by the click.
+
       const rect = e.currentTarget.getBoundingClientRect();
       fireConfetti({
         x: (rect.left + rect.width / 2) / window.innerWidth,

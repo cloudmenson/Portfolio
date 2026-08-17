@@ -2,11 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Reports which of `ids` currently owns the viewport. Picks the entry closest
- * to the top third of the screen so a tall section does not keep winning over
- * the one the reader has just scrolled into.
- */
 export const useActiveSection = (ids: readonly string[]) => {
   const [active, setActive] = useState(ids[0] ?? "");
 

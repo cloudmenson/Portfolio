@@ -8,10 +8,6 @@ import { useToast } from "@/shared/ui/toast";
 import { useKonami } from "@/shared/lib/use-konami";
 import { fireConfetti } from "@/shared/lib/confetti";
 
-/**
- * Konami code unlocks "chaos mode": confetti, a banner, and a hue rotation on
- * the whole document that winds back down after a few seconds.
- */
 export const EasterEggs = () => {
   const { toast } = useToast();
   const [unlocked, setUnlocked] = useState(false);
@@ -27,12 +23,6 @@ export const EasterEggs = () => {
   useEffect(() => {
     if (!unlocked) return;
 
-    /*
-      Recolours by swapping the accent tokens rather than applying a CSS
-      `filter` to <html>. A filtered root becomes the containing block for
-      every `position: fixed` descendant, which would tear the custom cursor,
-      the backdrop and the sticky header away from the viewport.
-    */
     const root = document.documentElement;
     const overrides: Record<string, string> = {
       "--accent": "#f472b6",

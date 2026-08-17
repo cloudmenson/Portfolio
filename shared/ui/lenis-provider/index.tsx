@@ -24,11 +24,6 @@ const LenisContext = createContext<LenisContextValue>({
   scrollTo: () => {},
 });
 
-/**
- * Single source of truth for scrolling. Everything that moves the page goes
- * through `scrollTo` from here — a component calling `window.scrollTo`
- * directly would fight Lenis's own rAF loop and produce visible jitter.
- */
 export const useLenis = () => useContext(LenisContext);
 
 interface ILenisProvider {
@@ -44,10 +39,10 @@ export const LenisProvider = ({ children }: ILenisProvider) => {
     if (reducedMotion) return;
 
     const instance = new Lenis({
-      duration: 1.15,
+      lerp: 0.12,
       smoothWheel: true,
-      touchMultiplier: 1.6,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      syncTouch: false,
+      wheelMultiplier: 1,
     });
 
     lenisRef.current = instance;
@@ -76,7 +71,6 @@ export const LenisProvider = ({ children }: ILenisProvider) => {
       return;
     }
 
-    // Reduced motion, or Lenis not mounted yet — fall back to the platform.
     const el =
       typeof target === "string" ? document.querySelector(target) : null;
     const top =

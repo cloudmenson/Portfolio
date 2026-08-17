@@ -2,22 +2,16 @@
 
 import { useRef } from "react";
 import { Check } from "lucide-react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 import { Section, experience, SectionHeading } from "@/shared";
 
 export const ExperienceSection = () => {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // The rail fills in as the timeline scrolls through the viewport.
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start 65%", "end 60%"],
-  });
-  const scaleY = useSpring(scrollYProgress, {
-    mass: 0.2,
-    damping: 30,
-    stiffness: 160,
   });
 
   return (
@@ -29,10 +23,9 @@ export const ExperienceSection = () => {
       />
 
       <div ref={trackRef} className="relative">
-        {/* Rail */}
         <div className="absolute left-[7px] top-2 hidden h-full w-px bg-line sm:block">
           <motion.div
-            style={{ scaleY }}
+            style={{ scaleY: scrollYProgress }}
             className="h-full w-full origin-top bg-gradient-to-b from-accent to-accent/20"
           />
         </div>
@@ -47,14 +40,13 @@ export const ExperienceSection = () => {
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               className="relative sm:pl-12"
             >
-              {/* Node */}
               <span className="absolute left-0 top-2 hidden h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-accent bg-bg sm:flex">
                 {!entry.end && (
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 )}
               </span>
 
-              <div className="glass rounded-2xl p-6 transition-colors hover:border-accent/40 sm:p-8">
+              <div className="rounded-2xl border border-line bg-bg-elevated p-6 transition-colors hover:border-accent/40 sm:p-8">
                 <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="font-display text-xl font-bold sm:text-2xl">
                     {entry.role}

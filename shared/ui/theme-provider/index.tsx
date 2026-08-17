@@ -26,10 +26,6 @@ const ThemeContext = createContext<ThemeContextValue>({
 
 export const useTheme = () => useContext(ThemeContext);
 
-/**
- * Runs before first paint to stamp the stored theme onto <html>, so the page
- * never flashes the wrong palette. Kept in sync with `applyTheme` below.
- */
 export const themeInitScript = `
 (function () {
   try {
@@ -55,8 +51,6 @@ const applyTheme = (theme: Theme) => {
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>("dark");
 
-  // The init script already picked a theme — read it back rather than
-  // guessing again, so provider state and the DOM agree from the start.
   useEffect(() => {
     const current = document.documentElement.classList.contains("light")
       ? "light"
@@ -70,7 +64,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {
-      // Private mode / storage disabled — the theme still applies this session.
+
     }
   }, []);
 
